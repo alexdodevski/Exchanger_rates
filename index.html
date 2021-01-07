@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchanger</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <section id="nav">
+        <div class="container">
+            <div class="logo">
+                <h1>Exchanger Rates</h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="main">
+        <div class="container">
+            <div class="exchanger block">
+                <h1 class="exchanger_header">Курс обмена валют</h1>
+                <table class="currency">
+                    <tr class="table_headers">
+                        <th>Валюта</th>
+                        <th>Курс ЦБ</th>
+                        <th>Дата обновления</th>
+                    </tr>
+                    <tr>
+                        <td class="dollar"><img src="usd-flag.svg">USD</td>
+                        <td class="numbers usd_out"></td>
+                        <td class="date_currency_usd"></td>
+                    </tr>
+                    <tr>
+                        <td class="euro"><img src='eur-flag.svg'>EUR</td>
+                        <td class="numbers euro_out"></td>
+                        <td class="date_currency_eur"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="calculate block">
+                <h1>Калькулятор валют</h1>
+                <div class="calculate_range">
+                    <input type="range" name="" id="" value="0">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="main.js" defer></script>
+</body>
+
+</html>

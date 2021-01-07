@@ -1,0 +1,92 @@
+body {
+  background-color: #EBF0F3;
+  margin: 0;
+  font-family: "Open Sans", "PT Sans", sans-serif;
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#nav {
+  background-color: #00AFFF;
+  padding: 10px 0;
+}
+#nav h1 {
+  margin: 0;
+  color: white;
+}
+
+.block {
+  margin: 0 auto;
+  width: 944px;
+  background-color: white;
+  padding: 10px 20px 10px 40px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.exchanger {
+  height: 300px;
+  margin-top: 43px;
+}
+
+.currency {
+  width: 100%;
+  margin-top: 40px;
+}
+.currency th {
+  font-weight: normal;
+}
+.currency td {
+  text-align: center;
+  height: 65px;
+}
+
+.numbers {
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+}
+
+.dollar,
+.euro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+.dollar img,
+.euro img {
+  margin-right: 10px;
+}
+
+.difference {
+  font-size: 13px;
+  font-weight: normal;
+  position: absolute;
+  bottom: 5px;
+  color: #92D295;
+}
+
+.table_headers {
+  color: #A7A7A7;
+  font-size: 12px;
+}
+
+.calculate {
+  height: 200px;
+  margin-top: 20px;
+}
+
+.negative {
+  color: red;
+}
