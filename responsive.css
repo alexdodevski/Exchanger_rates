@@ -1,8 +1,12 @@
 @media screen and (max-width: 1280px) { .container { width: 100%; }
   .logo { padding-left: 15px; } }
-@media screen and (max-width: 944px) { .block { width: 100%; } }
+@media screen and (max-width: 944px) { .block { width: 100%; }
+  .calculate { height: 300px; }
+  .calculate_range { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; padding: 0; margin-top: 60px !important; }
+  .check { max-width: 200px; } }
 @media screen and (max-width: 550px) { .block { padding: 10px 10px; }
   .numbers { font-size: 16px; }
   .dollar, .euro { font-size: 16px; }
   .difference { left: 10px; }
-  .exchanger_header { text-align: center; } }
+  .exchanger_header { text-align: center; }
+  .calculate h1 { text-align: center; } }

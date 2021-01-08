@@ -1,6 +1,7 @@
 'use strict'
 
-console.log('hi')
+
+// отображение актуального курса двух главных валют
 
 class Currency {
     constructor() {
@@ -19,8 +20,13 @@ class Currency {
 
 }
 
+
+let usdObj = new Currency()
+let eurObj = new Currency()
+
+
+// объект валюты доллар США, содержит всю инфу с сервера 
 const createUsd = function(data) {
-    let usdObj = new Currency()
     usdObj.currencyOut = document.querySelector('.usd_out')
     usdObj.dateOut = document.querySelector('.date_currency_usd')
 
@@ -32,6 +38,7 @@ const createUsd = function(data) {
 
     if (usdObj.difference < 0) {
         usdObj.spanDiff.classList.add('negative')
+        usdObj.spanDiff.innerHTML = `-${usdObj.spanDiff.innerHTML}`
     } else {
         usdObj.spanDiff.classList.remove('negative')
     }
@@ -42,12 +49,11 @@ const createUsd = function(data) {
 
     usdObj.date = new Date(strDate)
     usdObj.dateOut.innerHTML = `${usdObj.date}`
-    console.log(usdObj)
+
 }
 
-
+// объект валюты евро, содержит всю инфу с сервера 
 const createEuro = function(data) {
-    let eurObj = new Currency()
     eurObj.currencyOut = document.querySelector('.euro_out')
     eurObj.dateOut = document.querySelector('.date_currency_eur')
 
@@ -68,9 +74,23 @@ const createEuro = function(data) {
 
     eurObj.date = new Date(strDate)
     eurObj.dateOut.innerHTML = `${eurObj.date}`
-    console.log(eurObj)
+
 }
 
+// запрос к сервере и работа с полученным объектом 
+
+fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(data) {
+        //функции отображения валют США и ЕВРО 
+        createUsd(data)
+        createEuro(data)
+    })
+
+
+// работа ползунка второго блока и отображение заданных значений в зависимости от курса
 
 
 fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
@@ -78,7 +98,29 @@ fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
         return resp.json()
     })
     .then(function(data) {
+
+        let exchangerObj = {
+            rangeInput: document.querySelector('.input_out'),
+            range: document.querySelector('.check'),
+            inputOut: document.querySelector('.out_exchanger')
+        }
+
+        let select = document.querySelector('.select_currency')
+        console.log(select.selectedIndex)
+
+        setInterval(() => {
+            let rangeValue = exchangerObj.range.value
+            if (select.selectedIndex === 0) {
+                exchangerObj.rangeInput.value = rangeValue * 10
+                exchangerObj.inputOut.innerHTML = `<p>${Math.round(exchangerObj.rangeInput.value * usdObj.currency) }&nbsp;₽</p>`
+                exchangerObj.rangeInput.value += ` $`
+            } else if (select.selectedIndex === 1) {
+                exchangerObj.rangeInput.value = rangeValue * 10
+                exchangerObj.inputOut.innerHTML = `<p>${Math.round(exchangerObj.rangeInput.value * eurObj.currency) }&nbsp;₽</p>`
+                exchangerObj.rangeInput.value += ` €`
+            }
+        }, 0)
+
         console.log(data)
-        createUsd(data)
-        createEuro(data)
+
     })
