@@ -33,7 +33,7 @@ const createUsd = function(data) {
     usdObj.currency = +data['Valute']['USD']['Value'].toFixed(2)
     usdObj.difference = ((+data['Valute']['USD']['Value']) - (+data['Valute']['USD']['Previous'])).toFixed(2)
 
-    usdObj.currencyOut.innerHTML = `${usdObj.currency}<span class="difference diff_usd">${usdObj.difference}&nbsp;₽</span>`
+    usdObj.currencyOut.innerHTML = `${usdObj.currency}<span class="difference diff_usd">${usdObj.difference}&nbsp;&#x20bd</span>`
     usdObj.spanDiff = document.querySelector('.diff_usd')
 
     if (usdObj.difference < 0) {
@@ -60,7 +60,7 @@ const createEuro = function(data) {
     eurObj.currency = +data['Valute']['EUR']['Value'].toFixed(2)
     eurObj.difference = ((+data['Valute']['EUR']['Value']) - (+data['Valute']['EUR']['Previous'])).toFixed(2)
 
-    eurObj.currencyOut.innerHTML = `${eurObj.currency}<span class="difference diff_eur">${eurObj.difference}&nbsp;₽</span>`
+    eurObj.currencyOut.innerHTML = `${eurObj.currency}<span class="difference diff_eur">${eurObj.difference}&nbsp;&#x20bd</span>`
     eurObj.spanDiff = document.querySelector('.diff_eur')
 
     if (eurObj.difference < 0) {
@@ -103,7 +103,7 @@ let exchangerObj = {
 
 exchangerObj.inputOut.append(exchangerObj.textInputOut)
 exchangerObj.rangeInput.value = exchangerObj.range.value
-exchangerObj.textInputOut.innerHTML = `0&nbsp;₽`
+exchangerObj.textInputOut.innerHTML = `0 &#x20bd`
 
 
 let currentValue = exchangerObj.range.value
@@ -113,10 +113,10 @@ let currentSelect = exchangerObj.select.selectedIndex;
 let changeInputOut = function(obj) {
     if (obj.select.selectedIndex === 0) {
         let result = Math.round(obj.rangeInput.value * usdObj.currency)
-        obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+        obj.textInputOut.innerHTML = `${result}&nbsp;&#x20bd`
     } else if (obj.select.selectedIndex === 1) {
         let result = Math.round(obj.rangeInput.value * eurObj.currency)
-        obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+        obj.textInputOut.innerHTML = `${result}&nbsp;&#x20bd`
     }
 }
 
@@ -126,10 +126,10 @@ let changeInputValue = function(obj) {
 
         if (obj.select.selectedIndex === 0) {
             let result = Math.round(obj.rangeInput.value * usdObj.currency)
-            obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+            obj.textInputOut.innerHTML = `${result}&nbsp;&#x20bd`
         } else if (obj.select.selectedIndex === 1) {
             let result = Math.round(obj.rangeInput.value * eurObj.currency)
-            obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+            obj.textInputOut.innerHTML = `${result}&nbsp;&#x20bd`
         }
     }
     obj.range.value = obj.rangeInput.value / 10;
