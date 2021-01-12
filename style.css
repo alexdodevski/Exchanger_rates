@@ -126,6 +126,7 @@ body {
 
 .check {
   width: 350px;
+  cursor: pointer;
 }
 
 .select_currency {

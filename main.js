@@ -38,7 +38,7 @@ const createUsd = function(data) {
 
     if (usdObj.difference < 0) {
         usdObj.spanDiff.classList.add('negative')
-        usdObj.spanDiff.innerHTML = `-${usdObj.spanDiff.innerHTML}`
+        usdObj.spanDiff.innerHTML = `${usdObj.spanDiff.innerHTML}`
     } else {
         usdObj.spanDiff.classList.remove('negative')
     }
@@ -92,35 +92,64 @@ fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
 
 // работа ползунка второго блока и отображение заданных значений в зависимости от курса
 
+let exchangerObj = {
+    rangeInput: document.querySelector('.input_out'),
+    range: document.querySelector('.check'),
+    inputOut: document.querySelector('.out_exchanger'),
+    textInputOut: document.createElement('p'),
+    select: document.querySelector('.select_currency')
+}
 
-fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
-    .then(function(resp) {
-        return resp.json()
-    })
-    .then(function(data) {
 
-        let exchangerObj = {
-            rangeInput: document.querySelector('.input_out'),
-            range: document.querySelector('.check'),
-            inputOut: document.querySelector('.out_exchanger')
+exchangerObj.inputOut.append(exchangerObj.textInputOut)
+
+let currentValue = exchangerObj.range.value
+let currentSelect = exchangerObj.select.selectedIndex;
+
+
+let changeInputOut = function(obj) {
+    if (obj.select.selectedIndex === 0) {
+        let result = Math.round(obj.rangeInput.value * usdObj.currency)
+        obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+    } else if (obj.select.selectedIndex === 1) {
+        let result = Math.round(obj.rangeInput.value * eurObj.currency)
+        obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+    }
+}
+
+let changeInputValue = function(obj) {
+    if (obj.rangeInput.value != (obj.range.value * 10)) {
+        if (obj.rangeInput.value > 1000) obj.rangeInput.value = 1000
+
+        if (obj.select.selectedIndex === 0) {
+            let result = Math.round(obj.rangeInput.value * usdObj.currency)
+            obj.textInputOut.innerHTML = `${result}&nbsp;₽`
+        } else if (obj.select.selectedIndex === 1) {
+            let result = Math.round(obj.rangeInput.value * eurObj.currency)
+            obj.textInputOut.innerHTML = `${result}&nbsp;₽`
         }
+    }
+    obj.range.value = obj.rangeInput.value / 10;
+}
 
-        let select = document.querySelector('.select_currency')
-        console.log(select.selectedIndex)
 
-        setInterval(() => {
-            let rangeValue = exchangerObj.range.value
-            if (select.selectedIndex === 0) {
-                exchangerObj.rangeInput.value = rangeValue * 10
-                exchangerObj.inputOut.innerHTML = `<p>${Math.round(exchangerObj.rangeInput.value * usdObj.currency) }&nbsp;₽</p>`
-                exchangerObj.rangeInput.value += ` $`
-            } else if (select.selectedIndex === 1) {
-                exchangerObj.rangeInput.value = rangeValue * 10
-                exchangerObj.inputOut.innerHTML = `<p>${Math.round(exchangerObj.rangeInput.value * eurObj.currency) }&nbsp;₽</p>`
-                exchangerObj.rangeInput.value += ` €`
-            }
-        }, 0)
 
-        console.log(data)
+setInterval(() => {
+    if (exchangerObj.range.value != currentValue) {
+        exchangerObj.rangeInput.value = exchangerObj.range.value * 10;
+        changeInputOut(exchangerObj)
+        currentValue = exchangerObj.range.value
+    }
+})
 
-    })
+setInterval(() => {
+    if (currentSelect != exchangerObj.select.selectedIndex) {
+        changeInputOut(exchangerObj)
+        currentSelect = exchangerObj.select.selectedIndex
+    }
+})
+
+setInterval(() => {
+    changeInputValue(exchangerObj)
+    currentValue = exchangerObj.range.value
+})
