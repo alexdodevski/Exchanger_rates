@@ -97,7 +97,7 @@ let exchangerObj = {
     range: document.querySelector('.check'),
     inputOut: document.querySelector('.out_exchanger'),
     textInputOut: document.createElement('p'),
-    select: document.querySelector('.select_currency')
+    select: document.querySelector('.select_currency'),
 }
 
 
@@ -153,3 +153,35 @@ setInterval(() => {
     changeInputValue(exchangerObj)
     currentValue = exchangerObj.range.value
 })
+
+
+// работа инпута и кнопок при адаптивности
+
+let buttonsCurrency = {
+    currencyButtonsBlock: document.querySelector('.currency_buttons'),
+    usd: document.querySelector('.usd_btn'),
+    eur: document.querySelector('.eur_btn'),
+}
+buttonsCurrency.currentButton = buttonsCurrency.usd
+
+buttonsCurrency.currencyButtonsBlock.addEventListener('click', function(e) {
+    clickButton(e)
+})
+
+function clickButton(e) {
+    let target = e.target
+    let currency = e.target.dataset.select
+
+    if (!target.closest('button')) return
+
+    active(target, currency)
+}
+
+function active(button, select) {
+    if (buttonsCurrency.currentButton) {
+        buttonsCurrency.currentButton.classList.remove('active')
+    }
+    buttonsCurrency.currentButton = button
+    buttonsCurrency.currentButton.classList.add('active')
+    exchangerObj.select.selectedIndex = select
+}

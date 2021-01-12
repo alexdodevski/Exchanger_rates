@@ -44,13 +44,17 @@
             </div>
             <div class="calculate block">
                 <h1>Калькулятор валют</h1>
+                <div class="currency_buttons">
+                    <button class="usd_btn active" data-select='0'>Доллар</button>
+                    <button class="eur_btn" data-select='1'>Евро</button>
+                </div>
                 <div class="calculate_range">
                     <select class='select_currency' name="" id=""> 
                         <option>Доллар США</option>
                         <option>Евро</option>
                     </select>
                     <div class="input_exchanger">
-                        <input class="input_out" type="text">
+                        <input class="input_out" type="text" onkeyup="this.value = this.value.replace(/[A-Za-zА-Яа-яЁё]/,'');">
                         <input class="check" type="range" name="" id="" value="0">
                     </div>
                     <div class="out_exchanger">
