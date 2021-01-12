@@ -102,6 +102,9 @@ let exchangerObj = {
 
 
 exchangerObj.inputOut.append(exchangerObj.textInputOut)
+exchangerObj.rangeInput.value = exchangerObj.range.value
+exchangerObj.textInputOut.innerHTML = `0&nbsp;₽`
+
 
 let currentValue = exchangerObj.range.value
 let currentSelect = exchangerObj.select.selectedIndex;
