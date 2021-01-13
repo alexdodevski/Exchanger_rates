@@ -3,24 +3,26 @@
 
 // отображение актуального курса двух главных валют
 
+
+// создаем класс для валют 
 class Currency {
     constructor() {
         this.months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
     }
-    get date() {
+    get date() { // получаем актуальную дату обновления
         if (this._date.getDate().toString().length == 1) {
             return `0${this._date.getDate()} ${this.months[this._date.getMonth()]} ${this._date.getFullYear()}`
         } else {
             return `${this._date.getDate()} ${this.months[this._date.getMonth()]} ${this._date.getFullYear()}`
         }
     }
-    set date(value) {
+    set date(value) { // записываем актуальную дату обновления
         return this._date = value
     }
 
 }
 
-
+// создаем валюты usd и euro
 let usdObj = new Currency()
 let eurObj = new Currency()
 
@@ -163,8 +165,9 @@ setInterval(() => {
 let buttonsCurrency = {
     currencyButtonsBlock: document.querySelector('.currency_buttons'),
     usd: document.querySelector('.usd_btn'),
-    eur: document.querySelector('.eur_btn'),
+    eur: document.querySelector('.eur_btn')
 }
+
 buttonsCurrency.currentButton = buttonsCurrency.usd
 
 buttonsCurrency.currencyButtonsBlock.addEventListener('click', function(e) {
